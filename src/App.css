@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+::-webkit-scrollbar-thumb {
+  background: #fefefe;
+  border-radius: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.bg_color {
+  background-color: #EEEEEE;
 }
 
-.App-link {
-  color: #61dafb;
+.toDO_card {
+  width: 430px;
+  height: 636px;
+  background: #FFFFFF;
+  border-radius: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.toDo_bg {
+  background: url("./assets/images/png/toDo_bg.png") no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding: 13px 28px;
+  height: 202px;
+}
+
+.input_add {
+  padding: 10px 12px;
+  width: 100%;
+  height: 49px;
+  background: #EBEFF2;
+  border-radius: 5px;
+  border: 0;
+}
+
+.add_btn {
+  padding: 10px;
+  isolation: isolate;
+  width: 88px;
+  height: 49px;
+  background: #20EEB0;
+  border-radius: 5px;
+  border: 0;
+}
+
+.task {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #0D0D0D;
+}
+
+.task_time {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #888888;
 }
