@@ -9,12 +9,29 @@ const ToDoList = () => {
   const [date, setDate] = useState(new Date());
   const [filteredList, setFilteredList] = useState("");
 
+  // local storage
+  
+  useEffect(() => {
+    const storedList = JSON.parse(localStorage.getItem("todoList"));
+    if (storedList) {
+      setTodoList(storedList);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
+
   const handleClick = () => {
     setTodoList((prev) => [
       ...prev,
       {
         task: input,
         completed: false,
+        taskTime:
+          new Date().getHours() +
+          ":" +
+          new Date().getMinutes().toLocaleString(),
       },
     ]);
 
@@ -56,8 +73,8 @@ const ToDoList = () => {
   const current = new Date();
   const newDate = `${current.getDate()}`;
 
-  const time = new Date();
-  const showTime = time.getHours() + ":" + time.getMinutes();
+  //   const time = new Date();
+  //   const showTime = time.getHours() + ":" + time.getMinutes();
 
   return (
     <>
@@ -116,10 +133,10 @@ const ToDoList = () => {
                                   : "none",
                               }}
                             >
-                              {todo.task}
+                              {todo.task}😃
                             </h2>
                             <p className="mb-0 task_time">
-                              Today at {showTime}
+                              Today at {todo.taskTime}
                             </p>
                           </div>
                           <div className="d-flex justify-content-end align-items-center gap-3">
