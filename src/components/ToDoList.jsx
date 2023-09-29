@@ -1,16 +1,42 @@
 import React, { useEffect, useRef, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import hello_gif from "../assets/images/png/HelloThereHolaGIF.gif";
 
 const ToDoList = () => {
   const myBtn = useRef();
+  const popup = useRef();
   const [input, setInput] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [date, setDate] = useState(new Date());
   const [filteredList, setFilteredList] = useState("");
+  const [openPopup, setOpenPopup] = useState(true);
+  const [randomNum, setRandomNum] = useState(3);
+
+  const popupClose = () => {
+    setOpenPopup(false);
+  };
+
+  useEffect(() => {
+    if (openPopup === true) {
+      const timer = setTimeout(() => {
+        console.log("This will run after 3 seconds!");
+        popup.current.style.right = -400 + "px";
+        setTimeout(() => {
+          popup.current.style.right = 0;
+          console.log("Second message after" + randomNum + "ms");
+          let randomNo = Math.floor(Math.random() * (10 - 3 + 1) + 7);
+          setRandomNum(randomNo);
+        }, randomNum * 1000);
+      }, 3000);
+      return () => clearTimeout(timer);
+    } else {
+      console.log(openPopup);
+      popup.current.style.right = -400 + "px";
+    }
+  }, [randomNum, openPopup]);
 
   // local storage
-  
   useEffect(() => {
     const storedList = JSON.parse(localStorage.getItem("todoList"));
     if (storedList) {
@@ -57,17 +83,6 @@ const ToDoList = () => {
     setTodoList(update);
   };
 
-  // current time
-  function refreshClock() {
-    setDate(new Date());
-  }
-  useEffect(() => {
-    const timerId = setInterval(refreshClock, 1000);
-    return function cleanup() {
-      clearInterval(timerId);
-    };
-  }, []);
-
   //  task time
 
   const current = new Date();
@@ -78,9 +93,25 @@ const ToDoList = () => {
 
   return (
     <>
-      <section className="bg_color vh-100">
-        <Container className="py-5 d-flex justify-content-end">
-          <div className=" toDO_card">
+      <section className="bg_color vh-100 position-relative overflow-hidden">
+        <div
+          ref={popup}
+          className="position-absolute popup_box bg-info rounded-1 bottom-0 z-3" style={{right:0}}
+        >
+          <div className="position-relative">
+            {" "}
+            <img src={hello_gif} alt="" className="w-100 h-100" />
+            <button
+              aria-label="popup btn"
+              className="close_btn fw-bolder position-absolute top-0 end-0 bg-transparent border-0 pt-2 me-4 text-end"
+              onClick={popupClose}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+        <Container className="py-5 d-flex justify-content-end h-100">
+          <div className=" toDO_card h-100 overflow-hidden">
             <div className="toDo_bg d-flex flex-column justify-content-end align-items-end">
               <h1 className=" text-white">Date: {newDate}</h1>
               <h1 className=" text-white">{date.toLocaleTimeString()}</h1>

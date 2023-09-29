@@ -22,8 +22,7 @@
 }
 
 .toDO_card {
-  width: 430px;
-  height: 636px;
+  width: 400px;
   background: #FFFFFF;
   border-radius: 10px;
 }
@@ -71,4 +70,14 @@
   font-size: 14px;
   line-height: 17px;
   color: #888888;
+}
+
+.popup_box{
+  transition: all .5s linear;
+  width: 350px;
+  height: 350px;
+}
+.close_btn{
+  transform: scale(2.0);
+
 }
