@@ -110,7 +110,7 @@ const ToDoList = () => {
             </button>
           </div>
         </div>
-        <Container className="py-5 d-flex justify-content-end h-100">
+        <Container className="py-5 d-flex justify-content-start h-100">
           <div className=" toDO_card h-100 overflow-hidden">
             <div className="toDo_bg d-flex flex-column justify-content-end align-items-end">
               <h1 className=" text-white">Date: {newDate}</h1>
